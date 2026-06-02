@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>مدیریت وظایف</title>
+<style>
+:root{--bg:#f4f6fb;--card:#fff;--text:#172033;--muted:#7b8497;--line:#e5e9f2;--primary:#1f4fd8;--primary2:#123aa8;--danger:#e63d3d;--ok:#20a464;--warn:#f2a900;--shadow:0 10px 30px rgba(14,25,58,.08);--radius:18px}
+*{box-sizing:border-box}html,body{margin:0;max-width:100%;overflow-x:hidden;font-family:Tahoma,Arial,sans-serif;background:var(--bg);color:var(--text)}button,input,select,textarea{font-family:inherit}button{cursor:pointer;border:0}.appbar{position:fixed;top:0;right:0;left:0;height:62px;background:rgba(255,255,255,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);z-index:50;display:flex;align-items:center;gap:10px;padding:10px 14px}.hamb{width:42px;height:42px;border-radius:14px;background:#eef3ff;color:var(--primary);font-size:24px}.title{font-weight:800;font-size:17px;white-space:nowrap}.searchWrap{flex:1;display:flex;gap:8px;min-width:0}.searchWrap input{width:100%;height:42px;border:1px solid var(--line);border-radius:14px;padding:0 12px;background:#fafbff;outline:none}.main{padding:78px 14px 90px;max-width:1000px;margin:auto}.drawerBackdrop{position:fixed;inset:0;background:rgba(0,0,0,.32);z-index:80;display:none}.drawer{position:fixed;top:0;bottom:0;right:-290px;width:280px;max-width:82vw;background:#fff;z-index:90;box-shadow:-20px 0 50px rgba(0,0,0,.18);transition:.25s;padding:18px}.drawer.open{right:0}.drawerBackdrop.show{display:block}.drawer h3{margin:8px 0 18px}.navBtn{display:flex;width:100%;align-items:center;gap:10px;background:#f7f9ff;padding:13px;border-radius:15px;margin-bottom:10px;color:var(--text);font-weight:700}.navBtn.active{background:var(--primary);color:white}.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:14px;margin-bottom:12px}.toolbar{display:flex;gap:8px;align-items:center;justify-content:space-between;margin-bottom:12px}.toolbar .left{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.btn{height:40px;border-radius:13px;padding:0 14px;background:#eef3ff;color:var(--primary);font-weight:800}.btn.primary{background:var(--primary);color:#fff}.btn.danger{background:#fff0f0;color:var(--danger)}.btn.gray{background:#f0f2f6;color:#5b6477}.fab{position:fixed;left:18px;bottom:18px;width:58px;height:58px;border-radius:22px;background:var(--primary);color:#fff;font-size:30px;box-shadow:0 14px 30px rgba(31,79,216,.34);z-index:60}.sectionTitle{margin:0 0 10px;font-size:20px}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.stat{background:#fff;border:1px solid var(--line);border-radius:16px;padding:12px;box-shadow:var(--shadow)}.stat b{display:block;font-size:22px}.stat span{font-size:12px;color:var(--muted)}.task{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center}.task.done{opacity:.68;background:#f0f1f4}.taskMain{min-width:0}.taskDesc{font-weight:800;line-height:1.7;overflow-wrap:anywhere}.meta{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}.pill{font-size:12px;border-radius:999px;padding:6px 9px;background:#f1f4fa;color:#5f687b}.pill.ok{background:#eaf8f1;color:var(--ok)}.pill.warn{background:#fff5d8;color:#a46d00}.pill.danger{background:#ffecec;color:var(--danger)}.pill.dueCompact{display:inline-flex;align-items:center;gap:5px;white-space:nowrap;max-width:100%;overflow:hidden;text-overflow:ellipsis}
+.pill.dueCompact .dueStatus{font-weight:800;margin-right:4px}
+.actions{display:flex;gap:7px;align-items:center}.iconBtn{width:38px;height:38px;border-radius:13px;background:#f3f5f9;color:#485268}.switch{position:relative;width:54px;height:30px;display:inline-block}.switch input{display:none}.slider{position:absolute;inset:0;background:#ccd2df;border-radius:999px;transition:.2s}.slider:before{content:"";position:absolute;width:24px;height:24px;right:3px;top:3px;background:white;border-radius:50%;transition:.2s;box-shadow:0 2px 8px rgba(0,0,0,.2)}.switch input:checked + .slider{background:var(--ok)}.switch input:checked + .slider:before{right:27px}.empty{text-align:center;color:var(--muted);padding:24px}.modalBackdrop{position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:100;display:none;align-items:flex-end}.modalBackdrop.show{display:flex}.modal{width:100%;max-width:560px;margin:auto auto 0;background:#fff;border-radius:24px 24px 0 0;padding:16px;max-height:92vh;overflow:auto}.field{margin-bottom:12px}.field label{display:block;font-size:13px;font-weight:800;margin-bottom:6px}.field input,.field select,.field textarea{width:100%;border:1px solid var(--line);border-radius:14px;padding:12px;background:#fbfcff;outline:none}.field textarea{min-height:84px;resize:vertical}.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}.table{width:100%;border-collapse:separate;border-spacing:0 8px}.table th{text-align:right;color:var(--muted);font-size:12px;padding:0 10px}.table td{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:10px}.table td:first-child{border-right:1px solid var(--line);border-radius:0 14px 14px 0}.table td:last-child{border-left:1px solid var(--line);border-radius:14px 0 0 14px}.reportBox{display:grid;gap:10px}.reportItem{border:1px solid var(--line);background:#fff;border-radius:16px;padding:12px}.reportTable{width:100%;border-collapse:separate;border-spacing:0 8px}.reportTable th{text-align:right;color:var(--muted);font-size:12px;padding:0 10px}.reportTable td{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:10px;vertical-align:top}.reportTable td:first-child{border-right:1px solid var(--line);border-radius:0 14px 14px 0}.reportTable td:last-child{border-left:1px solid var(--line);border-radius:14px 0 0 14px}.reportTable tr.done td{background:#f0f1f4;color:#727b8e}.summaryCard b{font-size:16px}.cal{border:1px solid var(--line);border-radius:16px;padding:10px;background:#fff}.calHead{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}.calGrid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;text-align:center}.calGrid div{padding:9px 0;border-radius:10px;font-size:12px}.day{background:#f5f7fb}.day.sel{background:var(--primary);color:#fff}.day.off{opacity:.25}.page{display:none}.page.active{display:block}.hideDesktop{display:none}
+@media(max-width:720px){.appbar{height:60px;padding:9px}.title{font-size:14px}.searchWrap{max-width:58vw}.main{padding:74px 10px 86px}.grid{grid-template-columns:repeat(2,1fr)}.task{grid-template-columns:1fr}.actions{justify-content:space-between;border-top:1px dashed var(--line);padding-top:8px}.row{grid-template-columns:1fr}.table,.table thead,.table tbody,.table tr,.table th,.table td,.reportTable,.reportTable thead,.reportTable tbody,.reportTable tr,.reportTable th,.reportTable td{display:block;width:100%}.table thead,.reportTable thead{display:none}.table tr,.reportTable tr{background:#fff;border:1px solid var(--line);border-radius:16px;padding:8px;margin-bottom:10px}.table td,.reportTable td{border:0!important;border-radius:0!important;padding:7px}.table td:before,.reportTable td:before{content:attr(data-label);display:block;color:var(--muted);font-size:11px;margin-bottom:3px}.hideMobile{display:none}.hideDesktop{display:inline-flex}}
+
+.taskFilters{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0 0 12px}
+.filterBox{background:#fff;border:1px solid var(--line);border-radius:16px;padding:10px;box-shadow:var(--shadow)}
+.filterBox label{display:block;font-size:12px;color:var(--muted);font-weight:800;margin-bottom:6px}
+.filterBox select{width:100%;height:42px;border:1px solid var(--line);border-radius:13px;background:#fbfcff;padding:0 10px;outline:none}
+@media(max-width:720px){.taskFilters{grid-template-columns:1fr;margin-bottom:10px}.filterBox{padding:9px}}
+
+</style>
+</head>
+<body>
+<header class="appbar">
+<button class="hamb" id="openDrawer">☰</button>
+<div class="title" id="pageTitle">وظایف</div>
+<div class="searchWrap"><input id="globalSearch" placeholder="جستجو: رضایی، شرح، تاریخ..." /></div>
+</header>
+<div class="drawerBackdrop" id="drawerBackdrop"></div>
+<aside class="drawer" id="drawer">
+<h3>منو</h3>
+<button class="navBtn active" data-page="tasksPage">📋 وظایف</button>
+<button class="navBtn" data-page="reportsPage">📊 گزارشات</button>
+<button class="navBtn" data-page="peoplePage">👤 افراد مسئول</button>
+<button class="navBtn" data-page="settingsPage">⚙️ تنظیمات</button>
+</aside>
+<main class="main">
+<section id="tasksPage" class="page active">
+<div class="grid" id="stats"></div>
+<div class="taskFilters">
+  <div class="filterBox">
+    <label>فیلتر وضعیت</label>
+    <select id="taskStatusFilter">
+      <option value="all">همه وظایف</option>
+      <option value="doing">در حال انجام</option>
+      <option value="done">انجام شده</option>
+      <option value="overdue">معوق</option>
+      <option value="nodue">بدون سررسید</option>
+    </select>
+  </div>
+  <div class="filterBox">
+    <label>فیلتر مسئول</label>
+    <select id="taskPersonFilter">
+      <option value="all">همه مسئول‌ها</option>
+    </select>
+  </div>
+</div>
+<div class="toolbar"><h2 class="sectionTitle">وظایف</h2><div class="left"><button class="btn primary hideMobile" onclick="openTaskModal()">+ وظیفه جدید</button></div></div>
+<div id="tasksList"></div>
+</section>
+<section id="reportsPage" class="page">
+<div class="card">
+<h2 class="sectionTitle">گزارش</h2>
+<div class="row">
+<div class="field"><label>مسئول</label><select id="reportPerson"></select></div>
+<div class="field"><label>وضعیت</label><select id="reportStatus"><option value="all">همه</option><option value="doing">در حال انجام</option><option value="done">انجام شده</option><option value="overdue">معوق</option></select></div>
+</div>
+<button class="btn primary" onclick="renderReports()">نمایش گزارش</button>
+</div>
+<div id="reportResult" class="reportBox"></div>
+</section>
+<section id="peoplePage" class="page">
+<div class="toolbar"><h2 class="sectionTitle">افراد مسئول</h2><button class="btn primary" onclick="openPersonModal()">+ افزودن مسئول</button></div>
+<table class="table"><thead><tr><th>نام</th><th>تعداد وظیفه</th><th>عملیات</th></tr></thead><tbody id="peopleTable"></tbody></table>
+</section>
+<section id="settingsPage" class="page">
+<div class="card"><h2 class="sectionTitle">تنظیمات</h2><p style="color:var(--muted);line-height:1.8;margin:0">اطلاعات در همین مرورگر ذخیره می‌شود. برای کار با موبایل، دکمه + پایین صفحه همیشه در دسترس است.</p></div>
+</section>
+</main>
+<button class="fab" onclick="openTaskModal()">+</button>
+<div class="modalBackdrop" id="taskModal"><div class="modal">
+<h3 id="taskModalTitle">وظیفه جدید</h3>
+<input type="hidden" id="taskId" />
+<div class="field"><label>شرح</label><textarea id="taskDesc" placeholder="شرح وظیفه"></textarea></div>
+<div class="field"><label>مسئول</label><select id="taskPerson"></select></div>
+<div class="row">
+<div class="field"><label>تاریخ ثبت</label><input id="taskCreated" readonly /></div>
+<div class="field"><label>سررسید اختیاری</label><input id="taskDue" readonly placeholder="اگر ندارد خالی بماند" onclick="openCalendar('taskDue')" /></div>
+</div>
+<div id="calendarBox" class="cal" style="display:none"></div>
+<div class="toolbar"><button class="btn gray" onclick="closeTaskModal()">انصراف</button><div class="left"><button class="btn gray" onclick="clearDueDate()">حذف سررسید</button><button class="btn primary" onclick="saveTask()">ذخیره</button></div></div>
+</div></div>
+<div class="modalBackdrop" id="personModal"><div class="modal">
+<h3 id="personModalTitle">مسئول جدید</h3><input type="hidden" id="personOld" />
+<div class="field"><label>نام مسئول</label><input id="personName" /></div>
+<div class="toolbar"><button class="btn gray" onclick="closePersonModal()">انصراف</button><button class="btn primary" onclick="savePerson()">ذخیره</button></div>
+</div></div>
+<script>
+const LS='tak_task_manager_v9';
+let state=loadState();
+let activePage='tasksPage';
+let search='';
+let taskStatusFilter='all';
+let taskPersonFilter='all';
+let calTarget=null, calYear=null, calMonth=null;
+function loadState(){try{const s=JSON.parse(localStorage.getItem(LS)); if(s&&s.tasks&&s.people) return s;}catch(e){} return {people:['رضایی','احمدی','محمدی'],tasks:[{id:id(),desc:'نمونه: پیگیری سفارش پاکت',person:'رضایی',created:todayJalali(),due:'',done:false,updated:Date.now()},{id:id(),desc:'نمونه: کنترل طراحی چاپ',person:'احمدی',created:todayJalali(),due:addJDays(2),done:false,updated:Date.now()}]};}
+function save(){localStorage.setItem(LS,JSON.stringify(state));}
+function id(){return 't'+Date.now()+Math.random().toString(16).slice(2)}
+function fa(n){return String(n).replace(/\d/g,d=>'۰۱۲۳۴۵۶۷۸۹'[d])}
+function en(s){return String(s||'').replace(/[۰-۹]/g,d=>'۰۱۲۳۴۵۶۷۸۹'.indexOf(d)).replace(/[٠-٩]/g,d=>'٠١٢٣٤٥٦٧٨٩'.indexOf(d))}
+function pad(n){return String(n).padStart(2,'0')}
+function todayJalali(){return g2jStr(new Date())}
+function addJDays(days){let d=new Date();d.setDate(d.getDate()+days);return g2jStr(d)}
+function g2jStr(date){const j=toJalali(date.getFullYear(),date.getMonth()+1,date.getDate());return `${j.jy}/${pad(j.jm)}/${pad(j.jd)}`}
+function jStrToDate(s){if(!s)return null;let [jy,jm,jd]=en(s).split('/').map(Number);if(!jy||!jm||!jd)return null;let g=toGregorian(jy,jm,jd);return new Date(g.gy,g.gm-1,g.gd)}
+function diffDays(j){const d=jStrToDate(j); if(!d)return null; const today=new Date(); today.setHours(0,0,0,0); d.setHours(0,0,0,0); return Math.round((d-today)/86400000)}
+function dueInfo(t){if(t.done)return {text:'انجام شده',cls:'ok'}; if(!t.due)return {text:'بدون سررسید',cls:''}; const d=diffDays(t.due); if(d<0)return {text:fa(Math.abs(d))+' روز تأخیر',cls:'danger'}; if(d===0)return {text:'امروز سررسید',cls:'warn'}; if(d<=3)return {text:fa(d)+' روز مانده',cls:'warn'}; return {text:fa(d)+' روز مانده',cls:'ok'} }
+function sortTasks(arr){return [...arr].sort((a,b)=> Number(a.done)-Number(b.done) || (jStrToDate(a.due)||new Date(8640000000000000))-(jStrToDate(b.due)||new Date(8640000000000000)) || b.updated-a.updated)}
+function filteredTasks(){
+ let q=search.trim().toLowerCase();
+ let arr=state.tasks;
+ if(taskPersonFilter && taskPersonFilter!=='all') arr=arr.filter(t=>t.person===taskPersonFilter);
+ if(taskStatusFilter==='doing') arr=arr.filter(t=>!t.done);
+ if(taskStatusFilter==='done') arr=arr.filter(t=>t.done);
+ if(taskStatusFilter==='overdue') arr=arr.filter(t=>!t.done&&t.due&&diffDays(t.due)<0);
+ if(taskStatusFilter==='nodue') arr=arr.filter(t=>!t.due);
+ if(q) arr=arr.filter(t=> [t.desc,t.person,t.created,t.due,t.done?'انجام شده':'در حال انجام'].join(' ').toLowerCase().includes(q));
+ return sortTasks(arr)
+}
+function render(){save(); renderStats(); renderTasks(); renderPeople(); fillSelects(); if(activePage==='reportsPage') renderReports(false);}
+function renderStats(){const total=state.tasks.length, done=state.tasks.filter(t=>t.done).length, doing=total-done, overdue=state.tasks.filter(t=>!t.done&&t.due&&diffDays(t.due)<0).length;document.getElementById('stats').innerHTML=[['کل',total],['در حال انجام',doing],['انجام شده',done],['معوق',overdue]].map(x=>`<div class="stat"><b>${fa(x[1])}</b><span>${x[0]}</span></div>`).join('')}
+function renderTasks(){const list=document.getElementById('tasksList');const arr=filteredTasks(); if(!arr.length){list.innerHTML='<div class="card empty">موردی پیدا نشد</div>';return} list.innerHTML=arr.map(t=>{const info=dueInfo(t);return `<div class="card task ${t.done?'done':''}"><div class="taskMain"><div class="taskDesc">${esc(t.desc)}</div><div class="meta"><span class="pill">👤 ${esc(t.person)}</span><span class="pill">ثبت: ${fa(t.created)}</span>${t.due?`<span class="pill dueCompact ${info.cls}">سررسید: ${fa(t.due)} <span class="dueStatus">${info.text}</span></span>`:''}</div></div><div class="actions"><label class="switch" title="روشن: در حال انجام / خاموش: انجام شده"><input type="checkbox" ${!t.done?'checked':''} onchange="toggleDone('${t.id}',this.checked)"><span class="slider"></span></label><button class="iconBtn" onclick="editTask('${t.id}')">✏️</button><button class="iconBtn" onclick="deleteTask('${t.id}')">🗑️</button></div></div>`}).join('')}
+function renderPeople(){const body=document.getElementById('peopleTable');body.innerHTML=state.people.map(p=>{const c=state.tasks.filter(t=>t.person===p).length;return `<tr><td data-label="نام">${esc(p)}</td><td data-label="تعداد وظیفه">${fa(c)}</td><td data-label="عملیات"><button class="btn gray" onclick="openPersonModal('${escAttr(p)}')">ویرایش</button> <button class="btn danger" ${c?'disabled style="opacity:.45;cursor:not-allowed"':''} onclick="deletePerson('${escAttr(p)}')">حذف</button></td></tr>`}).join('')}
+function fillSelects(){
+ let opts=state.people.map(p=>`<option value="${escAttr(p)}">${esc(p)}</option>`).join('');
+ document.getElementById('taskPerson').innerHTML=opts;
+ document.getElementById('reportPerson').innerHTML='<option value="all">همه مسئول‌ها</option>'+opts;
+ const tf=document.getElementById('taskPersonFilter');
+ if(tf){
+   const current=tf.value||taskPersonFilter||'all';
+   tf.innerHTML='<option value="all">همه مسئول‌ها</option>'+opts;
+   tf.value=state.people.includes(current)?current:'all';
+   taskPersonFilter=tf.value;
+ }
+}
+function openTaskModal(task=null){document.getElementById('taskModal').classList.add('show');document.getElementById('calendarBox').style.display='none';document.getElementById('taskModalTitle').textContent=task?'ویرایش وظیفه':'وظیفه جدید';document.getElementById('taskId').value=task?.id||'';document.getElementById('taskDesc').value=task?.desc||'';fillSelects();document.getElementById('taskPerson').value=task?.person||state.people[0]||'';document.getElementById('taskCreated').value=task?.created||todayJalali();document.getElementById('taskDue').value=task?.due||''}
+function closeTaskModal(){document.getElementById('taskModal').classList.remove('show')}
+function saveTask(){const desc=document.getElementById('taskDesc').value.trim(), person=document.getElementById('taskPerson').value, created=document.getElementById('taskCreated').value, due=document.getElementById('taskDue').value; if(!desc){alert('شرح وظیفه را وارد کنید');return} if(!person){alert('مسئول را انتخاب کنید');return} const tid=document.getElementById('taskId').value; if(tid){let t=state.tasks.find(x=>x.id===tid);Object.assign(t,{desc,person,created,due,updated:Date.now()});}else state.tasks.push({id:id(),desc,person,created,due,done:false,updated:Date.now()});closeTaskModal();render()}
+function editTask(tid){openTaskModal(state.tasks.find(t=>t.id===tid))}
+function deleteTask(tid){if(confirm('حذف شود؟')){state.tasks=state.tasks.filter(t=>t.id!==tid);render()}}
+function toggleDone(tid,isDoing){let t=state.tasks.find(x=>x.id===tid);t.done=!isDoing;t.updated=Date.now();render()}
+function clearDueDate(){document.getElementById('taskDue').value='';document.getElementById('calendarBox').style.display='none'}
+function openPersonModal(old=''){document.getElementById('personModal').classList.add('show');document.getElementById('personOld').value=old;document.getElementById('personName').value=old;document.getElementById('personModalTitle').textContent=old?'ویرایش مسئول':'مسئول جدید'}
+function closePersonModal(){document.getElementById('personModal').classList.remove('show')}
+function savePerson(){const old=document.getElementById('personOld').value, name=document.getElementById('personName').value.trim();if(!name){alert('نام را وارد کنید');return} if(!old&&state.people.includes(name)){alert('این نام وجود دارد');return} if(old){if(name!==old&&state.people.includes(name)){alert('این نام وجود دارد');return} state.people=state.people.map(p=>p===old?name:p); state.tasks.forEach(t=>{if(t.person===old)t.person=name});}else state.people.push(name);closePersonModal();render()}
+function deletePerson(p){const c=state.tasks.filter(t=>t.person===p).length;if(c){alert(`این مسئول در ${fa(c)} وظیفه استفاده شده و قابل حذف نیست.`);return} if(confirm('حذف مسئول؟')){state.people=state.people.filter(x=>x!==p);render()}}
+function reportStatusMatch(t,status){
+ if(status==='all')return true;
+ if(status==='done')return t.done;
+ if(status==='doing')return !t.done;
+ if(status==='overdue')return !t.done&&t.due&&diffDays(t.due)<0;
+ return true;
+}
+function renderReports(showEmpty=true){
+ const person=document.getElementById('reportPerson').value||'all';
+ const status=document.getElementById('reportStatus').value||'all';
+ let arr=state.tasks.filter(t=>(person==='all'||t.person===person)&&reportStatusMatch(t,status));
+ arr=sortTasks(arr);
+ const allCount=arr.length;
+ const doing=arr.filter(t=>!t.done).length;
+ const done=arr.filter(t=>t.done).length;
+ const overdue=arr.filter(t=>!t.done&&t.due&&diffDays(t.due)<0).length;
+ const box=document.getElementById('reportResult');
+ if(!arr.length){box.innerHTML=showEmpty?'<div class="card empty">گزارشی پیدا نشد</div>':'';return}
+ const statusName={all:'همه',doing:'در حال انجام',done:'انجام شده',overdue:'معوق'}[status]||'همه';
+ let html=`<div class="card summaryCard"><b>${person==='all'?'همه مسئول‌ها':esc(person)}</b><div class="meta"><span class="pill">فیلتر وضعیت: ${statusName}</span><span class="pill">کل: ${fa(allCount)}</span><span class="pill">در حال انجام: ${fa(doing)}</span><span class="pill ok">انجام شده: ${fa(done)}</span><span class="pill danger">معوق: ${fa(overdue)}</span></div></div>`;
+ html+=`<table class="reportTable"><thead><tr><th>شرح</th><th>مسئول</th><th>تاریخ ثبت</th><th>سررسید</th><th>وضعیت</th></tr></thead><tbody>`;
+ html+=arr.map(t=>{const info=dueInfo(t);return `<tr class="${t.done?'done':''}"><td data-label="شرح"><b>${esc(t.desc)}</b></td><td data-label="مسئول">${esc(t.person)}</td><td data-label="تاریخ ثبت">${fa(t.created)}</td><td data-label="سررسید">${t.due?fa(t.due):'ندارد'}</td><td data-label="وضعیت"><span class="pill ${info.cls}">${info.text}</span></td></tr>`}).join('');
+ html+='</tbody></table>';
+ box.innerHTML=html;
+}
+function showPage(idp){activePage=idp;document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id===idp));document.querySelectorAll('.navBtn').forEach(b=>b.classList.toggle('active',b.dataset.page===idp));document.getElementById('pageTitle').textContent={tasksPage:'وظایف',reportsPage:'گزارشات',peoplePage:'افراد مسئول',settingsPage:'تنظیمات'}[idp];closeDrawer();render()}
+function openCalendar(target){calTarget=target;let val=document.getElementById(target).value||todayJalali();let [y,m]=en(val).split('/').map(Number);calYear=y;calMonth=m;drawCalendar()}
+function drawCalendar(){const box=document.getElementById('calendarBox');box.style.display='block';const first=jStrToDate(`${calYear}/${pad(calMonth)}/01`);let start=(first.getDay()+1)%7;const len=jMonthLen(calYear,calMonth);let days=['ش','ی','د','س','چ','پ','ج'].map(d=>`<div style="font-weight:800;color:var(--muted)">${d}</div>`).join('');for(let i=0;i<start;i++)days+='<div></div>';let current=document.getElementById(calTarget).value;for(let d=1;d<=len;d++){let s=`${calYear}/${pad(calMonth)}/${pad(d)}`;days+=`<div class="day ${current===s?'sel':''}" onclick="pickDate('${s}')">${fa(d)}</div>`}box.innerHTML=`<div class="calHead"><button class="btn gray" onclick="calPrev()">قبلی</button><b>${fa(calYear+'/'+pad(calMonth))}</b><button class="btn gray" onclick="calNext()">بعدی</button></div><div class="calGrid">${days}</div>`}
+function calPrev(){calMonth--;if(calMonth<1){calMonth=12;calYear--}drawCalendar()}function calNext(){calMonth++;if(calMonth>12){calMonth=1;calYear++}drawCalendar()}function pickDate(s){document.getElementById(calTarget).value=s;document.getElementById('calendarBox').style.display='none'}
+function jMonthLen(y,m){return m<=6?31:m<=11?30:(isLeapJalaaliYear(y)?30:29)}
+function isLeapJalaaliYear(jy){return jalCal(jy).leap===0}
+function esc(s){return String(s||'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}function escAttr(s){return esc(s).replace(/`/g,'&#96;')}
+document.getElementById('globalSearch').addEventListener('input',e=>{search=e.target.value;renderTasks()});
+document.getElementById('taskStatusFilter').addEventListener('change',e=>{taskStatusFilter=e.target.value;renderTasks()});
+document.getElementById('taskPersonFilter').addEventListener('change',e=>{taskPersonFilter=e.target.value;renderTasks()});document.getElementById('openDrawer').onclick=()=>{document.getElementById('drawer').classList.add('open');document.getElementById('drawerBackdrop').classList.add('show')};function closeDrawer(){document.getElementById('drawer').classList.remove('open');document.getElementById('drawerBackdrop').classList.remove('show')}document.getElementById('drawerBackdrop').onclick=closeDrawer;document.querySelectorAll('.navBtn').forEach(b=>b.onclick=()=>showPage(b.dataset.page));document.getElementById('reportPerson').addEventListener('change',()=>renderReports(false));document.getElementById('reportStatus').addEventListener('change',()=>renderReports(false));
+function div(a,b){return ~~(a/b)}
+function toJalali(gy,gm,gd){const g_d_m=[0,31,59,90,120,151,181,212,243,273,304,334];let jy=(gy<=1600)?0:979;gy-=(gy<=1600)?621:1600;let gy2=(gm>2)?gy+1:gy;let days=365*gy+div(gy2+3,4)-div(gy2+99,100)+div(gy2+399,400)-80+gd+g_d_m[gm-1];jy+=33*div(days,12053);days%=12053;jy+=4*div(days,1461);days%=1461;if(days>365){jy+=div(days-1,365);days=(days-1)%365}let jm=(days<186)?1+div(days,31):7+div(days-186,30);let jd=1+((days<186)?days%31:(days-186)%30);return {jy,jm,jd}}
+function toGregorian(jy,jm,jd){jy=Number(jy);jm=Number(jm);jd=Number(jd);let gy=(jy<=979)?621:1600;jy-=(jy<=979)?0:979;let days=365*jy+div(jy,33)*8+div((jy%33)+3,4)+78+jd+((jm<7)?(jm-1)*31:((jm-7)*30+186));gy+=400*div(days,146097);days%=146097;if(days>36524){gy+=100*div(--days,36524);days%=36524;if(days>=365)days++}gy+=4*div(days,1461);days%=1461;if(days>365){gy+=div(days-1,365);days=(days-1)%365}let gd=days+1;let sal_a=[0,31,((gy%4===0&&gy%100!==0)||gy%400===0)?29:28,31,30,31,30,31,31,30,31,30,31];let gm;for(gm=1;gm<=12&&gd>sal_a[gm];gm++)gd-=sal_a[gm];return {gy,gm,gd}}
+function jalCal(jy){const breaks=[-61,9,38,199,426,686,756,818,1111,1181,1210,1635,2060,2097,2192,2262,2324,2394,2456,3178];let bl=breaks.length,gy=jy+621,leapJ=-14,jp=breaks[0],jm,jump,leap,leapG,march,n,i;if(jy<jp||jy>=breaks[bl-1])return {leap:1};for(i=1;i<bl;i++){jm=breaks[i];jump=jm-jp;if(jy<jm)break;leapJ+=div(jump,33)*8+div(jump%33,4);jp=jm}n=jy-jp;leapJ+=div(n,33)*8+div((n%33)+3,4);if(jump%33===4&&jump-n===4)leapJ++;leapG=div(gy,4)-div((div(gy,100)+1)*3,4)-150;march=20+leapJ-leapG;if(jump-n<6)n=n-jump+div(jump+4,33)*33;leap=((n+1)%33-1)%4;if(leap===-1)leap=4;return {leap,gy,march}}
+render();
+</script>
+</body>
+</html>
